@@ -1,0 +1,11 @@
+---- spacrmn Matches (11 in 4 files) ----
+Main.c (src):                 //sprintf(buf,"%d",spacrmn);	
+Msgproc.c (src):				int *spacttl,int *spacrmn,int *incnt_incar,int *abn)
+Msgproc.c (src):	*spacrmn = remainTotal;
+Msgproc.h (include):				int *spacttl,int *spacrmn,int *incnt_incar,int *abn);
+Thre_usr.c (src):	int spacrmn=0;//ʣ�೵λ
+Thre_usr.c (src):		crtmsg(gwlist, msglist, &spacttl, &spacrmn ,&incnt_incar,&abnttl);
+Thre_usr.c (src):             gRemin = spacrmn;
+Thre_usr.c (src):             if(spacrmn >= SysCfg.SpaceFull_RealRmn) k = spacrmn -SysCfg.SpaceFull_RealRmn;
+Thre_usr.c (src):             //sprintf(buf,"%d",spacrmn);	
+Thre_usr.c (src):             up2usr(spacttl,spacrmn);
