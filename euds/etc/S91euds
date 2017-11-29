@@ -1,0 +1,42 @@
+#!/bin/sh
+
+tmpPath=/opt/tmp/
+usrPath=/opt/
+prjName=euds
+
+appver=EUDS-0.02.03_XXG
+
+##增加日志文件目录的判断
+if [ ! -d "$usrPath$prjName/log/history" ]; then
+	mkdir $usrPath$prjName/log/history
+fi
+if [ ! -d "$usrPath$prjName/log/intraday" ]; then
+	mkdir $usrPath$prjName/log/intraday
+fi
+
+##增加bin、lib文件拷贝
+rm -rf $usrPath$prjName/bin/*
+rm -rf $usrPath$prjName/lib/*
+cp $tmpPath$prjName.tmp/bin/* $usrPath$prjName/bin
+cp $tmpPath$prjName.tmp/lib/* $usrPath$prjName/lib
+		
+##增加配置文件拷贝判断
+if [ -f "$usrPath$prjName/etc/euds.conf" ];then
+	echo "the euds.conf file is exist"
+else
+	echo "the euds.conf file is not exist"
+	cp $tmpPath$prjName.tmp/etc/euds.conf $usrPath$prjName/etc/
+fi
+
+if [ -f "$usrPath$prjName/etc/euds_zlog.conf" ];then
+	echo "the euds_zlog.conf file is exist"
+else
+	echo "the euds_zlog.conf file is not exist"
+	cp $tmpPath$prjName.tmp/etc/euds_zlog.conf $usrPath$prjName/etc/
+fi
+
+
+##运行用户应用程序 
+nohup $usrPath$prjName/bin/$appver >/dev/null 2>&1 & #&是基于bash的后台，而非系统后台
+nohup $usrPath$prjName/bin/redoapp.sh $appver >/dev/null 2>&1 & 
+
